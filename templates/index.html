@@ -54,6 +54,10 @@
                         <img style="width: 90px;height: 90px;" src="{{ url_for('static', path='/h2_template.png') }}">
                     </button>    
 
+                    <button onclick="render('h3')" class="btn btn-primary" type="button" style="background: rgba(13,110,253,0);padding: 0px;width: 100px;height: 100px;margin: 5px 5px;border-radius: 11px;border: 1px solid #ffa52d;border-top-style: solid;border-right-width: 1px;border-right-style: solid;border-bottom-style: solid;border-left-style: solid;">
+                        <img style="width: 90px;height: 90px;" src="{{ url_for('static', path='/h3_template.png') }}">
+                    </button>    
+
                 </div>
                 <div style="margin-top: 19px;padding-bottom: 33px;">
                     <p>Download</p><a id="download_button" href="#" style="color: #ffa52d;text-decoration: none;border-radius: 4px;border-right-style: solid;border-left-style: solid;padding: 0px 7px;background: #292929;" download="">Download the avatar</a>
@@ -72,13 +76,14 @@
 </body>
 
 <script>
-    api_url = "http://localhost:8000/api"
+    api_url = "http://localhost:8000/";
+    document.getElementById("avatar_url").value = api_url + "static/test_avatar.png"
     function render(template){
         if(document.getElementById("avatar_url").value == ""  || !document.getElementById("avatar_url").value.startsWith("http")){
             alert("Please enter a valid avatar url");
             return
         }
-        document.getElementById("preview").src = api_url + `?template_id=${template}&avatar=${document.getElementById("avatar_url").value}`;
+        document.getElementById("preview").src = api_url + `api?template_id=${template}&avatar=${document.getElementById("avatar_url").value}`;
         document.getElementById("download_button").href = document.getElementById("preview").src;
     }
 </script>
